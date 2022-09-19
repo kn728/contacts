@@ -30,7 +30,7 @@ function App() {
     const w = e.target.value //stores the value of the search box
     if(w) { //ensures w has value before searching
     contacts.forEach(con => {           
-        if(con.name.includes(w) || con.name.toLowerCase().includes(w)) { //ensures search is not case sensitive
+        if(con.name.includes(w) || con.name.toLowerCase().includes(w) || con.username.includes(w) || con.phone.includes(w) ||con.email.includes(w)) { //criteria for search
           temp.push(con)//adds contacts whos names include w
         }
         else{return} //moves on to the next iteration
@@ -43,7 +43,6 @@ function App() {
     const  con = contacts[idx-1]
     selectContact(con)
     setNeedHelp(false)
-    console.log(idx)
   }
 
   //ensures searched contacts is set back to empty once contact page is exited
@@ -75,9 +74,9 @@ function App() {
         </div>
         <Stack alignItems='center'>{contactList}</Stack>
         <HelpIcon sx={{position:'absolute', left:'90%', top:'93%'}} className='change' onClick={() => setNeedHelp(prev => !prev)}/>
-        {needHelp && <Card sx={{width:"60%", position:'absolute',left: '26%', top:'78%', padding:'10px'}}>
-              <p>Just type in the name you are searching for in the search bar to look for people.
-                 To see more specific information about each contact click on their listed name. 
+        {needHelp && <Card sx={{width:"60%", position:'absolute',left: '26%', top:'73%', padding:'10px'}}>
+              <p>Just type in the name, username, email or phone number you are searching for in the search bar to look for contacts.<br></br>
+                 To see more specific information about each contact click on their listed name. <br></br>
                  Click on question mark to get rid of me!</p>
           </Card>}
       </Paper> }

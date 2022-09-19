@@ -5,7 +5,6 @@ export function contactStore(dis) {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(res => res.json())
       .then(data => {
-             console.log(data)
             dis(storeContacts(data)) //calls the reducer function that stores the contacts into redux
       })
    

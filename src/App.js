@@ -10,33 +10,36 @@ import contactLogo from './images/contactLogo.png'
 import HelpIcon from '@mui/icons-material/Help';
 
 function App() {
+  
   const dis = useDispatch()
+
+  //stores the contacts into the redux storage
   React.useEffect(() => {
     contactStore(dis)         
 },[])
-
+  //retrieves the contacts from redux state store
   const contacts = useSelector((state => state.contacts))
 
-  const [searchedContacts, setSearchedContacts] = React.useState([])
-  const [contact, selectContact] = React.useState()
-  const [needHelp, setNeedHelp] = React.useState(false)
+  const [searchedContacts, setSearchedContacts] = React.useState([])//stores the list of potential contacts
+  const [contact, selectContact] = React.useState() //stores the selected contact information
+  const [needHelp, setNeedHelp] = React.useState(false) //check if user needs help
 
  
-
+  //gets the contacts whose names include whats in the search bar
   function getContacts(e){
     const temp = []
-    const w = e.target.value
-    contacts.forEach(con => {  
-      if(!w) {
-        return
-      }    
-      if(con.name.includes(w) || con.name.toLowerCase().includes(w)) {
-        temp.push(con)
-      }
-      else{return}
-    });
-    setSearchedContacts(temp)
+    const w = e.target.value //stores the value of the search box
+    if(w) { //ensures w has value before searching
+    contacts.forEach(con => {           
+        if(con.name.includes(w) || con.name.toLowerCase().includes(w)) { //ensures search is not case sensitive
+          temp.push(con)//adds contacts whos names include w
+        }
+        else{return} //moves on to the next iteration
+      });
+    }
+      setSearchedContacts(temp) //sets the state of searched contacts
   }
+  //sets the contact that is chosen by the user
   function setContact(idx) {
     const  con = contacts[idx-1]
     selectContact(con)
@@ -44,10 +47,12 @@ function App() {
     console.log(idx)
   }
 
+  //ensures searched contacts is set back to empty once contact page is exited
   React.useEffect(()=> {
     setSearchedContacts([])
   }, [contact])
 
+  //maps the list of contacts that fits the search criteria
   const contactList = searchedContacts.map((con) => {
         const idx = con.id
       return (      

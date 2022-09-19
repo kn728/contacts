@@ -4,9 +4,9 @@ import contactLogo from '../images/contactLogo.png'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import profileDefault from '../images/profileDefault.png'
 
-
+//display the contact information
 export default function contactDisplay(props) {
-    const p = props.contact
+    const p = props.contact //stores the contact for easier access
     return(
         <div style={{minHeight:'50vh', width:'100%'}}>
 

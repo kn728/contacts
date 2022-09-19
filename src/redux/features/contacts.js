@@ -5,7 +5,7 @@ const contactSlice= createSlice({
     name: 'contact',
     initialState: [],
     reducers: {
-        storeContacts: (state, action) => {
+        storeContacts: (state, action) => { //stores contacts into redux when called
             if(action.payload.length > 0) {                
                 return [...action.payload]
             }

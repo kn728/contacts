@@ -1,7 +1,6 @@
 
 import './App.css';
 import {useDispatch, useSelector} from 'react-redux'
-import {storeContacts} from './redux/features/contacts.js'
 import React from 'react';
 import {Card, TextField, Stack, Paper} from '@mui/material'
 import { contactStore } from './contactFunctions';
@@ -16,7 +15,7 @@ function App() {
   //stores the contacts into the redux storage
   React.useEffect(() => {
     contactStore(dis)         
-},[])
+  },[])
   //retrieves the contacts from redux state store
   const contacts = useSelector((state => state.contacts))
 
